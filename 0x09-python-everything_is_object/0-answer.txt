@@ -1,2 +1,4 @@
-type\n
+#!/usr/bin/python3
+type
+
 
