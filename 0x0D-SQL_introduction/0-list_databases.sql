@@ -1,3 +1,3 @@
---Ths is script that lists all databases in mysql server
+--A script listing all databases in Mysql server
 SHOW DATABASES;
 
