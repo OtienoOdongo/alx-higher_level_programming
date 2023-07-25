@@ -8,7 +8,6 @@ const myfile = process.argv[2];
 const filecontent = process.argv[3];
 
 // Writing the string to the file
-fs.writeFile(myfile, filecontent, (err) => {
-  if (err) throw err;
-  console.log('File has been successfully written.');
+fs.writeFile(myfile, filecontent, 'utf-8', (error) => {
+  if (error) console.log(error);
 });
