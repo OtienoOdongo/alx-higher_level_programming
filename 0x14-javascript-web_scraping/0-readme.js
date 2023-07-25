@@ -7,8 +7,7 @@ const fs = require('fs'); //imports built-in nodejs file system (fs) module
 const file_name = process.argv[2]; //filename is the 3rd element of process.argv array
 
 //reading the file asynchronously
-fs.readFile(file_name, (err, file_content) => {
+fs.readFile(file_name, function (err, file_content) {
 if (err) throw err;
 console.log(file_content.toString()); //toString() method is used to convert buffer object to string
 });
-
