@@ -2,11 +2,13 @@
 // writing a string to a file using fs
 
 const fs = require('fs');
-const path = 'myfile.txt';
 
-const buf = Buffer.from('Python is cool', 'utf-8');
+// Retrieving the filename and file content from command line arguments
+const myfile = process.argv[2];
+const filecontent = process.argv[3];
 
-fs.writeFile(path, buf, { flag: 'a' }, (err) => {
+// Writing the string to the file
+fs.writeFile(myfile, filecontent, (err) => {
   if (err) throw err;
   console.log('File has been successfully written.');
 });
