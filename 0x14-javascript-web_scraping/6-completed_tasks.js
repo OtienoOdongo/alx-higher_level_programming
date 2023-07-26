@@ -16,10 +16,15 @@ request.get(apiurl, function (error, response, body) {
       if (task.completed) {
         results[id] += 1;
       }
+    }
+    // Deleting user IDs that have zero completed tasks
+    for (const id in results) {
       if (results[id] === 0) {
         delete results[id];
       }
     }
+
     console.log(results);
   }
 });
+
