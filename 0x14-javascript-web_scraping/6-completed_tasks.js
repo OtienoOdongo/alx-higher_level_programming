@@ -3,28 +3,29 @@
 const request = require('request');
 
 const apiurl = process.argv[2];
-const results = {};
 
-request.get(apiurl, function (error, response, body) {
-  if (!error) {
-    const tasks = JSON.parse(body);
-    for (const task of tasks) {
-      const id = task.userId;
-      if (results[id] === undefined) {
-         results[id] = 0;
+request.get(apiurl, (error, response, body) => {
+  if (error) {
+    console.error(error);
+  } else if (response.statusCode !== 200) {
+    console.error(response.statusCode);
+  } else {
+    const todos = JSON.parse(body);
+    const result = {};
+
+    for (const todo of todos) {
+      const id = todo.userId;
+      if (result[id] === undefined) {
+        result[id] = 0;
       }
-      if (task.completed) {
-        results[id] += 1;
+      if (todo.completed) {
+        result[id] += 1;
+      }
+      if (result[id] === 0) {
+        delete result[id];
       }
     }
-    // Deleting user IDs that have zero completed tasks
-    for (const id in results) {
-      if (results[id] === 0) {
-        delete results[id];
-      }
-    }
 
-    console.log(results);
+    console.log(result);
   }
 });
-
